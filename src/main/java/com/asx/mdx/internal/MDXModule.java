@@ -1,16 +1,16 @@
 package com.asx.mdx.internal;
 
-import com.asx.mdx.common.Game;
-import com.asx.mdx.internal.MDX.Properties;
+import com.asx.mdx.client.io.loaders.DummyModelLoader;
 import com.asx.mdx.client.render.DebugToolsRenderer;
 import com.asx.mdx.client.render.gui.GUIElementTracker;
 import com.asx.mdx.client.render.gui.notifications.NotifierModule;
-import com.asx.mdx.client.io.loaders.DummyModelLoader;
-import com.asx.mdx.common.system.SystemInfo;
 import com.asx.mdx.common.minecraft.structure.StructureGenerationHandler;
 import com.asx.mdx.common.net.http.webserver.WebModule;
+import com.asx.mdx.common.system.SystemInfo;
+import com.asx.mdx.internal.MDX.Properties;
 
 import net.minecraftforge.client.model.ModelLoaderRegistry;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -42,7 +42,7 @@ public class MDXModule
         MDX.settings().pre(event);
         WebModule.startWebServer();
         SystemInfo.INSTANCE.runtimeTasks();
-        Game.instance.registerEventHandler(StructureGenerationHandler.INSTANCE);
+        MinecraftForge.EVENT_BUS.register(StructureGenerationHandler.INSTANCE);
     }
 
     @SideOnly(Side.CLIENT)
@@ -50,9 +50,9 @@ public class MDXModule
     public void preClient(FMLPreInitializationEvent event)
     {
         ModelLoaderRegistry.registerLoader(DummyModelLoader.INSTANCE);
-        Game.instance.registerEventHandler(NotifierModule.instance);
-        Game.instance.registerEventHandler(GUIElementTracker.INSTANCE);
-        Game.instance.registerEventHandler(DebugToolsRenderer.instance);
+        MinecraftForge.EVENT_BUS.register(NotifierModule.instance);
+        MinecraftForge.EVENT_BUS.register(GUIElementTracker.INSTANCE);
+        MinecraftForge.EVENT_BUS.register(DebugToolsRenderer.instance);
         MDX.renders().pre(event);
     }
 

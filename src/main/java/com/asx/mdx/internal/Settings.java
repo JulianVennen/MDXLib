@@ -2,7 +2,6 @@ package com.asx.mdx.internal;
 
 import java.io.File;
 
-import com.asx.mdx.common.Game;
 import com.asx.mdx.common.mods.IPreInitEvent;
 
 import net.minecraftforge.common.config.Configuration;
@@ -56,7 +55,7 @@ public class Settings implements IPreInitEvent
     
     public int getWebserverPort()
     {
-        return Game.instance.isDevEnvironment() ? 7762 : webserverPort.getInt();
+        return webserverPort.getInt();
     }
 
     public Configuration getConfig()

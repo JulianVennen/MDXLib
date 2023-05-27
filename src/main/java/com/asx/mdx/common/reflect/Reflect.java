@@ -3,7 +3,6 @@ package com.asx.mdx.common.reflect;
 import java.lang.reflect.Field;
 
 import com.asx.mdx.internal.MDX;
-import com.asx.mdx.common.Game;
 
 public class Reflect
 {
@@ -114,7 +113,7 @@ public class Reflect
     {
         try
         {
-            String fieldName = Game.instance.isDevEnvironment() ? deobfName : obfName;
+            String fieldName = isDevEnvironment() ? deobfName : obfName;
             Field field = clazz.getDeclaredField(fieldName);
             field.setAccessible(true);
             field.set(obj, value);
@@ -134,7 +133,7 @@ public class Reflect
     {
         try
         {
-            String fieldName = Game.instance.isDevEnvironment() ? deobfName : obfName;
+            String fieldName = isDevEnvironment() ? deobfName : obfName;
             Field field = clazz.getDeclaredField(fieldName);
             field.setAccessible(true);
             return field.get(obj);
@@ -145,5 +144,10 @@ public class Reflect
         }
 
         return null;
+    }
+    
+    public static boolean isDevEnvironment()
+    {
+        return (Boolean) net.minecraft.launchwrapper.Launch.blackboard.get("fml.deobfuscatedEnvironment");
     }
 }

@@ -38,61 +38,7 @@ public class Game
     public static final Game instance = new Game();
 
     protected Game() {}
-
-    /** Easy way to gain access to the lightmap texture. **/
-    public DynamicTexture getLightmapTexture()
-    {
-        return MDX.access().getLightmapTexture();
-    }
-
-    /** Easy way to gain access to the lightmap colors array. **/
-    public int[] getLightmapColors()
-    {
-        return MDX.access().getLightmapColors();
-    }
-
-    /** Allows for the developer to specify if a lightmap update is required. **/
-    public void setLightmapUpdateNeeded(boolean b)
-    {
-        MDX.access().setLightmapUpdateNeeded(b);
-    }
-
-    /** Get the boss color modifier. **/
-    public float getBossColorModifier()
-    {
-        return MDX.access().getBossColorModifier();
-    }
-
-    /** Get the torch flicker X variable. **/
-    public float getTorchFlickerX()
-    {
-        return MDX.access().getTorchFlickerX();
-    }
-
-    /** Get the boss color modifier previous variable. **/
-    public float getBossColorModifierPrev()
-    {
-        return MDX.access().getBossColorModifierPrev();
-    }
-
-    /**
-     * Returns if the current Minecraft installation is running 
-     * in a development environment or normal environment.
-     * 
-     * @return Returns true if in a dev environment. Returns false if other.
-     */
-    public boolean isDevEnvironment()
-    {
-        return (Boolean) net.minecraft.launchwrapper.Launch.blackboard.get("fml.deobfuscatedEnvironment");
-    }
-
-    /** Register class instances through this method instead of the individual forge event busses. **/
-    public void registerEventHandler(Object handler)
-    {
-        //FMLCommonHandler.instance().bus().register(handler);
-        MinecraftForge.EVENT_BUS.register(handler);
-    }
-
+    
     /**
      * Finds all IRecipe instances registered to a specific Item or Block instance.
      * 
@@ -186,48 +132,4 @@ public class Game
 
         return null;
     }
-
-//    public static Item register(String modid, String identifier, Item item)
-//    {
-//        item.setTranslationKey(String.format("%s:%s", modid, identifier));
-//        GameRegistry.register(item, new ResourceLocation(modid, identifier));
-//
-//        if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
-//        {
-//            Renderers.registerIcon(item);
-//        }
-//
-//        return item;
-//    }
-
-//    public static Block register(String modid, String identifier, Block block)
-//    {
-//        block.setTranslationKey(String.format("%s:%s", modid, identifier));
-//        
-//        GameRegistry.register(block, new ResourceLocation(modid, identifier));
-//        GameRegistry.register(new ItemBlock(block).setRegistryName(block.getRegistryName()));
-//
-//        if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
-//        {
-//            Item item = Item.getItemFromBlock(block);
-//            ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
-//        }
-//
-//        return block;
-//    }
-
-    public Item getItem(Block block)
-    {
-        return Item.getItemFromBlock(block);
-    }
-
-//    public static void register(Class<? extends Entity> entityClass, String entityName, int id, Object mod, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates)
-//    {
-//        EntityRegistry.registerModEntity(entityClass, entityName, id, mod, trackingRange, updateFrequency, sendsVelocityUpdates);
-//    }
-//
-//    public static void register(Class<? extends Entity> entityClass, String entityName, int id, Object mod, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates, int eggPrimaryColor, int eggSecondaryColor)
-//    {
-//        EntityRegistry.registerModEntity(entityClass, entityName, id, mod, trackingRange, updateFrequency, sendsVelocityUpdates, eggPrimaryColor, eggSecondaryColor);
-//    }
 }

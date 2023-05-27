@@ -7,7 +7,6 @@ import java.lang.invoke.MethodHandles;
 import java.lang.reflect.Method;
 
 import com.asx.mdx.client.ClientGame;
-import com.asx.mdx.common.Game;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.model.ModelBase;
@@ -279,11 +278,11 @@ public class Access
         {
             Method method = null;
             
-            method = CompressedStreamTools.class.getDeclaredMethod(Game.instance.isDevEnvironment() ? "writeTag" : "func_150663_a", NBTBase.class, DataOutput.class);
+            method = CompressedStreamTools.class.getDeclaredMethod(Reflect.isDevEnvironment() ? "writeTag" : "func_150663_a", NBTBase.class, DataOutput.class);
             method.setAccessible(true);
             COMPRESSED_STREAM_TOOLS_WRITE_TAG = MethodHandles.publicLookup().unreflect(method);
 
-            method = CompressedStreamTools.class.getDeclaredMethod(Game.instance.isDevEnvironment() ? "read" : "func_152455_a", DataInput.class, int.class, NBTSizeTracker.class);
+            method = CompressedStreamTools.class.getDeclaredMethod(Reflect.isDevEnvironment() ? "read" : "func_152455_a", DataInput.class, int.class, NBTSizeTracker.class);
             method.setAccessible(true);
             COMPRESSED_STREAM_TOOLS_READ_TAG = MethodHandles.publicLookup().unreflect(method);
         }
@@ -335,7 +334,7 @@ public class Access
         {
             try
             {
-                Method method = Render.class.getDeclaredMethod(Game.instance.isDevEnvironment() ? "getEntityTexture" : "func_110775_a", Entity.class);
+                Method method = Render.class.getDeclaredMethod(Reflect.isDevEnvironment() ? "getEntityTexture" : "func_110775_a", Entity.class);
                 method.setAccessible(true);
                 GET_ENTITY_TEXTURE = MethodHandles.publicLookup().unreflect(method);
             }

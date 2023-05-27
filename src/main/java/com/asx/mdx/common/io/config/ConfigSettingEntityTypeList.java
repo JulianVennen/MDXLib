@@ -2,9 +2,8 @@ package com.asx.mdx.common.io.config;
 
 import java.util.ArrayList;
 
-import com.asx.mdx.internal.MDX;
-import com.asx.mdx.common.Game;
 import com.asx.mdx.common.minecraft.entity.Entities;
+import com.asx.mdx.internal.MDX;
 
 import net.minecraft.entity.Entity;
 import net.minecraftforge.common.config.Property;
@@ -84,10 +83,7 @@ public class ConfigSettingEntityTypeList extends ConfigSetting
             }
             else
             {
-                if (Game.instance.isDevEnvironment())
-                {
-                    MDX.log().info("Entity type was null or had a null registry name. This is probably a bug. Entity type: " + clz);
-                }
+                MDX.log().info("Entity type was null or had a null registry name. This is probably a bug. Entity type: " + clz);
             }
         }
 
