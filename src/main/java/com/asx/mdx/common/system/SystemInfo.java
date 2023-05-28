@@ -50,7 +50,6 @@ public class SystemInfo
 
             if (process != null)
             {
-                process.waitFor();
                 BufferedReader buffer = new BufferedReader(new InputStreamReader(process.getInputStream()));
                 String line = "";
 
@@ -62,6 +61,7 @@ public class SystemInfo
                     }
                 }
 
+                process.waitFor();
                 buffer.close();
             }
 
@@ -76,7 +76,6 @@ public class SystemInfo
 
             if (process != null)
             {
-                process.waitFor();
                 BufferedReader buffer = new BufferedReader(new InputStreamReader(process.getInputStream()));
                 String line = "";
 
@@ -95,6 +94,7 @@ public class SystemInfo
                         }
                     }
 
+                    process.waitFor();
                     buffer.close();
                 }
             }
