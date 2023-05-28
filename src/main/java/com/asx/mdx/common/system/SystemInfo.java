@@ -63,6 +63,7 @@ public class SystemInfo
                 }
 
                 buffer.close();
+                process = null;
             }
 
             switch (osType)
