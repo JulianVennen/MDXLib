@@ -38,7 +38,7 @@ public class SystemInfo
                     process = runtime.exec("wmic cpu get name");
                     break;
                 case LINUX:
-                    process = runtime.exec("cat /proc/cpuinfo | grep \"model name\"");
+                    process = runtime.exec("grep \"model name\" /proc/cpuinfo");
                     break;
                 case OSX:
                     process = runtime.exec("sysctl -n machdep.cpu.brand_string");
